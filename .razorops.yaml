@@ -18,14 +18,13 @@ tasks:
     - commands:
       - gem install bundler
       - bundle install || bundle check
-      - dockerize -wait tcp://localhost:5432 -timeout 60s
       - RAILS_ENV=test bundle exec rake db:create db:migrate
       - bundle exec rake autospec
     
-
+    
+    - run: dockerize -wait tcp://localhost:5432
+      always: true
     ## cleanup the unused images
-    # - run: dockerize -wait tcp://localhost:5432
-    #   always: true
     - run: docker system prune -f
       always: true
 
