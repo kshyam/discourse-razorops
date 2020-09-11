@@ -3,9 +3,13 @@ global:
     containers:
       - image: ruby:2.6
       - image: redis
-      - image: postgres:9.6
-    environment:
-      - DATABASE_URL: postgres://root@db:5432
+      - image: postgres:9.6-jessie
+      environment:
+        - RACK_ENV=test
+        - POSTGRES_USER=ubuntu
+        - POSTGRES_DB=discourse_test
+        - DATABASE_URL="postgres://ubuntu@localhost:5432/discourse_test"
+
 
 tasks:
   unit-tests:
