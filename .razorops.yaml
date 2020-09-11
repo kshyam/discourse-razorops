@@ -2,13 +2,13 @@ global:
   runner:
     containers:
       - image: ruby:2.6
+      - image: redis
     environment:
       - DATABASE_URL: postgres://root@db:5432
       - image: postgres:9.6
 
 tasks:
   unit-tests:
-    runner: ruby:2.6
     steps:
       - checkout
       - commands:
