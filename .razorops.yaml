@@ -20,7 +20,9 @@ tasks:
       - bundle install || bundle check
       - RAILS_ENV=test bundle exec rake db:create db:migrate
       - bundle exec rake autospec
-
+    
+    - run: dockerize -wait tcp://localhost:5432
+    always: true
 
     ## cleanup the unused images
     - run: docker system prune -f
