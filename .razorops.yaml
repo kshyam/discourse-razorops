@@ -12,6 +12,7 @@ tasks:
     steps:
       - checkout
       - commands:
+        - gem install bundler
         - bundle install || bundle check
         - RAILS_ENV=test bundle exec rake db:create db:migrate
         - bundle exec rake autospec
