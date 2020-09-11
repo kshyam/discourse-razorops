@@ -14,12 +14,18 @@ global:
 tasks:
   unit-tests:
     steps:
-      - checkout
-      - commands:
-        - gem install bundler
-        - bundle install || bundle check
-        - RAILS_ENV=test bundle exec rake db:create db:migrate
-        - bundle exec rake autospec
+    - checkout
+    - commands:
+      - gem install bundler
+      - bundle install || bundle check
+      - RAILS_ENV=test bundle exec rake db:create db:migrate
+      - bundle exec rake autospec
+
+
+    ## cleanup the unused images
+    - run: docker system prune -f
+      always: true
+
 
   # deploy-heroku:
   #   steps:
