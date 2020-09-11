@@ -1,0 +1,20 @@
+global:
+  runner:
+    containers:
+    - image: razorci/ruby
+
+tasks:
+  unit-tests:
+    runner: ruby:2.6
+    steps:
+    - run: bundle install
+    - commands:
+        - bundle check
+        - bundle exec rspec
+  
+  # deploy-heroku:
+  #   steps:
+  #     - commands:
+  #       - git branch
+  #       - git push https://heroku:13bdb3ef-b2d8-4d73-a0cb-399732cba919@git.heroku.com/bnl.git origin/cicd:master
+  #   when: branch == "cicd"
