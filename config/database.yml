@@ -33,13 +33,13 @@ development:
 test:
   prepared_statements: false
   adapter: postgresql
-  database: <%= test_db %>
+  database: <%= ENV['DATABASE_URL'] %>
   min_messages: warning
   pool: 5
   timeout: 5000
   advisory_locks: false # Disable until https://github.com/rails/rails/issues/40029 has beeen resolved.
-  host_names:
-    - test.localhost
+  # host_names:
+    # - test.localhost
 
 # profile db is used for benchmarking using the script/bench.rb script
 profile:
