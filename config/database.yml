@@ -33,7 +33,7 @@ development:
 test:
   prepared_statements: false
   adapter: postgresql
-  database: <%= ENV['DATABASE_URL'] %>
+  database: <%= ENV['TEST_DATABASE_URL'] %>
   min_messages: warning
   pool: 5
   timeout: 5000
