@@ -1,17 +1,20 @@
 global:
   runner:
     containers:
-    - image: razorci/ruby
+      - image: ruby:2.6
+    environment:
+      - DATABASE_URL: postgres://root@db:5432
+      - image: postgres:9.6
 
 tasks:
   unit-tests:
     runner: ruby:2.6
     steps:
-    - run: bundle install
-    - commands:
-        - bundle check
-        - bundle exec rspec
-  
+      - commands:
+        - bundle install || bundle check
+        - RAILS_ENV=test bundle exec rake db:create db:migrate
+        - bundle exec rake autospec
+
   # deploy-heroku:
   #   steps:
   #     - commands:
